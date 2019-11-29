@@ -6,7 +6,6 @@ from django.contrib import messages
 from .Forms.login import LoginForm
 from .Forms.signup import SignupForm
 from Website import linkerAPI
-from passporteye import read_mrz
 # Create your views here.
 
 
