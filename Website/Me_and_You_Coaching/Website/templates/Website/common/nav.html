@@ -2,30 +2,8 @@
 <!-- Main Nav -->
 			<nav class="main_nav">
 				<ul class="d-flex flex-row align-items-center justify-content-center">
-					<li class="
-                        {% if request.path == "/web/" %}
-                            {{ "active"}}
-                        {% endif %}">
-                        <a href="
-                            {% if request.path == "/web/contact" %}
-                                {{ "/web" }}
-                            {% elif request.path == "/web/"%}
-                                {{ "#" }}
-                            {% endif %}">Accueil
-                        </a>
-                    </li>
-					<li class="
-                        {% if request.path == "/web/contact" %}
-                            {{ "active"}}
-                        {% endif %}">
-                        <a href="
-                            {% if request.path == "/web/" %}
-					            {{ "/web/contact" }}
-                            {% elif request.path == "/web/contact" %}
-                                {{ "#" }}
-                            {% endif %}">Contact
-                        </a>
-                    </li>
+					{% block index %} {% endblock %}
+                    {% block contact %} {% endblock %}
 				</ul>
 			</nav>
             <!-- Hamburger -->

@@ -1,0 +1,31 @@
+{% extends "Website/common/nav.html" %}
+
+{% block index %}
+    <li class="
+        {% if request.path == "/web/" %}
+            {{ "active"}}
+        {% endif %}">
+        <a href="
+            {% if request.path == "/web/contact" %}
+                {{ "/web" }}
+            {% elif request.path == "/web/" %}
+                {{ "#" }}
+            {% endif %}">Accueil
+        </a>
+    </li>
+{% endblock %}
+
+{% block contact %}
+    <li class="
+        {% if request.path == "/web/contact" %}
+            {{ "active"}}
+        {% endif %}">
+        <a href="
+            {% if request.path == "/web/" %}
+                {{ "/web/contact" }}
+            {% elif request.path == "/web/contact" %}
+                {{ "#" }}
+            {% endif %}">Contact
+        </a>
+    </li>
+{% endblock %}
