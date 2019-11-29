@@ -6,9 +6,9 @@
             {{ "active"}}
         {% endif %}">
         <a href="
-            {% if request.path == "/web/contact" %}
+            {% if request.path != "/web/" %}
                 {{ "/web" }}
-            {% elif request.path == "/web/" %}
+            {% else %}
                 {{ "#" }}
             {% endif %}">Accueil
         </a>
@@ -21,11 +21,41 @@
             {{ "active"}}
         {% endif %}">
         <a href="
-            {% if request.path == "/web/" %}
+            {% if request.path != "/web/contact" %}
                 {{ "/web/contact" }}
-            {% elif request.path == "/web/contact" %}
+            {% else %}
                 {{ "#" }}
             {% endif %}">Contact
+        </a>
+    </li>
+{% endblock %}
+
+{% block login %}
+    <li class="
+        {% if request.path == "/web/login" %}
+            {{ "active"}}
+        {% endif %}">
+        <a href="
+            {% if request.path != "/web/login" %}
+                {{ "/web/login" }}
+            {% else %}
+                {{ "#" }}
+            {% endif %}">Connexion
+        </a>
+    </li>
+{% endblock %}
+
+{% block signup %}
+    <li class="
+        {% if request.path == "/web/signup" %}
+            {{ "active"}}
+        {% endif %}">
+        <a href="
+            {% if request.path != "/web/signup" %}
+                {{ "/web/signup" }}
+            {% else %}
+                {{ "#" }}
+            {% endif %}">Inscription
         </a>
     </li>
 {% endblock %}

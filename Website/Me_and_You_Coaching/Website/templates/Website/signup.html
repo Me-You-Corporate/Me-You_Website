@@ -1,14 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Inscription</title>
-</head>
-<body>
+{% extends "Website/common/base.html" %}
+{% load staticfiles %}
+
+{% block content %}
+<div class="">
     <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
         {{ form.as_ul }}
         <input type="submit" value="Submit">
     </form>
-</body>
-</html>
+</div>
+{% endblock %}

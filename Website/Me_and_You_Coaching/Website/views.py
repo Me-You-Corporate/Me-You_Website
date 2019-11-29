@@ -35,7 +35,7 @@ def login(request):
     else:
         form = LoginForm()
 
-    return render(request, "Website/login-account.html", {'form': form})
+    return render(request, "Website/login.html", {'form': form})
 
 
 def signup(request):
