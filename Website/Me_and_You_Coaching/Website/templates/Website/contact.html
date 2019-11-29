@@ -1,0 +1,61 @@
+{% extends "Website/common/base.html" %}
+{% load staticfiles %}
+
+{% block content %}
+
+	<!-- Home -->
+
+	<div class="home_contact">
+		<div class="parallax_background parallax-window" data-parallax="scroll" data-image-src="{% static 'media/slider.jpg' %}" data-speed="0.8"></div>
+		<div class="home_overlay"></div>
+		<div class="home_container2 d-flex flex-column align-items-center justify-content-center">
+			<div class="home_title"><h1>Contact</h1></div>
+		</div>
+	</div>
+  
+	<!-- Contact -->
+
+	<div class="contact custom_container_wrap">
+		<div class="container d-flex flex-column align-items-center justify-content-center">
+			<div class="row">
+				
+				<!-- Contact Content -->
+				<div class="col-xl-12">
+					<div class="contact_content ">
+						<div>
+							<div class="contact_logo "><img src="{% static 'media/logo_my.png' %}" alt=""></div>
+							<div class="contact_title">Nous contacter</div>
+							<div class="row contact_row">
+								<div class="col-xl-6">
+									<div class="contact_text">
+										<p>Pour entrer en contact avec nos équipes, rien de plus simple. Remplissez le formulaire ci-dessous, nous vous répondrons sous peu. A très vite !</p>
+									</div>
+								</div>
+								<div class="col-xl-6">
+									<div class="contact_info_list">
+										<ul>
+											<li>Rue des écoles</li>
+											<li>+33 6 18 89 77 36</li>
+											<li>contact@meandyoucorporate.com</li>
+										</ul>
+									</div>
+								</div>
+							</div>
+							<div class="contact_form_container">
+								<form action="#" class="contact_form">
+									<div class="row contact_form_row">
+										<div class="col-md-6"><input type="text" class="contact_input" placeholder="Votre nom" required="required"></div>
+										<div class="col-md-6"><input type="email" class="contact_input" placeholder="Votre mail" required="required"></div>
+										<div class="col-12"><input type="text" class="contact_input" placeholder="Sujet"></div>
+										<div class="col-12"><textarea class="contact_input contact_textarea" placeholder="Message" required="required"></textarea></div>
+									</div>
+									<button class="contact_button">Envoyer</button>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+		</div>
+	</div>
+  </div>
+{% endblock %}
