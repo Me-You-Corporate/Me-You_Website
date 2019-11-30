@@ -2,10 +2,49 @@
 {% load staticfiles %}
 
 {% block content %}
+
+    <!-- Home -->
+
+    <div class="home_contact">
+		<div class="parallax_background parallax-window" data-parallax="scroll" data-image-src="{% static 'media/slider.jpg' %}" data-speed="0.8"></div>
+		<div class="home_overlay"></div>
+		<div class="home_container2 d-flex flex-column align-items-center justify-content-center">
+			<div class="home_title"><h1>Connexion</h1></div>
+		</div>
+	</div>
+
+	<div class="contact custom_container_wrap">
+		<div class="container d-flex flex-column align-items-center justify-content-center">
+			<div class="row">
+
+				<!-- Contact Content -->
+				<div class="col-xl-12">
+					<div class="contact_content ">
+						<div>
+							<div class="contact_logo "><img src="{% static 'media/logo_my.png' %}" alt=""></div>
+							<div class="contact_form_container">
+								<form method="POST" class="contact_form">
+									<div class="row contact_form_row">
+                                        {% load widget_tweaks %}
+                                        {% csrf_token %}
+                                        <div class="col-6">{% render_field form.email class="contact_input" placeholder="Votre adresse e-mail"%}</div>
+										<div class="col-12">{% render_field form.password class="contact_input" placeholder="Mot de passe" %}</div>
+                                    </div>
+                                    <input class="contact_button" type="submit" value="Se connecter">
+                                </form>
+							</div>
+						</div>
+					</div>
+				</div>
+		</div>
+	</div>
+  </div>
+{% endblock %}
+
 <div class="">
     <form class="" method="post">
+        {% csrf_token %}
         {{ form }}
         <input class="" type="submit" value="Connexion">
     </form>
 </div>
-{% endblock %}

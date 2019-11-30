@@ -5,6 +5,7 @@ from django.http import HttpResponse
 from django.contrib import messages
 from .Forms.login import LoginForm
 from .Forms.signup import SignupForm
+from .Forms.contact import ContactForm
 from Website import linkerAPI
 # Create your views here.
 
@@ -17,12 +18,17 @@ def index(request):
 
 def contact(request):
     template = loader.get_template('Website/contact.html')
+    form = ContactForm()
+    if request.method == "POST":
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            username = form.cleaned_data['username']
+            email = form.cleaned_data['password']
+            subject = form.cleaned_data['subject']
+            message = form.cleaned_data['message']
+    context = {'form': form}
 
-    return HttpResponse(template.render({}, request))
-
-
-def site(request):
-    return HttpResponse("Page vitrine")
+    return HttpResponse(template.render(context, request))
 
 
 def login(request):
@@ -43,10 +49,10 @@ def signup(request):
         form = SignupForm(request.POST)
         if form.is_valid():
             form_inputs = {
-                'first_name': form.cleaned_data['first_name'],
+                'first_name': form.clean_email(),
                 'last_name': form.cleaned_data['last_name'],
                 'email': form.cleaned_data['email'],
-                'password': form.cleaned_data['password'],
+                'password': form.cleaned_data['email'],
             }
             fs = FileSystemStorage()
             if request.FILES and request.FILES['identification_document']:

@@ -23,32 +23,35 @@ class SignupForm(forms.Form):
         ]
 
     def clean_email_confirm(self, *args, **kwargs):
-        email_confirm = self.cleaned_data.get('email_confirm')
-        email = self.cleaned_data.get('email')
+        email_confirm_ = self.cleaned_data.get('email_confirm')
+        email_ = self.cleaned_data.get('email')
 
-        if email == email_confirm:
-            return email_confirm
+        if email_ == email_confirm_:
+            return email_confirm_
         raise forms.ValidationError('Your confirmation doesn\'t match your email.')
 
     def clean_password_confirm(self, *args, **kwargs):
-        password_confirm = self.cleaned_data.get('password_confirm')
-        password = self.cleaned_data.get('password')
+        password_confirm_ = self.cleaned_data.get('password_confirm')
+        password_ = self.clean_password()
 
-        if password == password_confirm:
-            return password_confirm
+        if password_ == password_confirm_:
+            return password_confirm_
         raise forms.ValidationError('Your confirmation doesn\'t match your password.')
 
     def clean_password(self, *args, **kwargs):
-        password = self.cleaned_data.get('password')
-        if all(rule(password) for rule in SignupForm.password_rules):
-            return password
+        password_ = self.cleaned_data.get('password')
+        print('|')
+        print(password_)
+        print('|')
+        if all(rule(password_) for rule in SignupForm.password_rules):
+            return password_
         errors = []
-        if not any(x.isupper() for x in password):
+        if not any(x.isupper() for x in password_):
             errors.append('Your password needs at least 1 capital.')
-        if not any(x.islower() for x in password):
+        if not any(x.islower() for x in password_):
             errors.append('Your password needs at least 1 lowecarse.')
-        if not any(x.isdigit() for x in password):
+        if not any(x.isdigit() for x in password_):
             errors.append('Your password needs at least 1 number.')
-        if len(password) < 8:
+        if len(password_) < 8:
             errors.append('Your password needs to be at least 8 characters.')
         raise forms.ValidationError(errors)

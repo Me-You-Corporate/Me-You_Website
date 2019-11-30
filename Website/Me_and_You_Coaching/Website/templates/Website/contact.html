@@ -42,15 +42,17 @@
 								</div>
 							</div>
 							<div class="contact_form_container">
-								<form action="#" class="contact_form">
+								<form method="POST" class="contact_form">
 									<div class="row contact_form_row">
-										<div class="col-md-6"><input type="text" class="contact_input" placeholder="Votre nom" required="required"></div>
-										<div class="col-md-6"><input type="email" class="contact_input" placeholder="Votre mail" required="required"></div>
-										<div class="col-12"><input type="text" class="contact_input" placeholder="Sujet"></div>
-										<div class="col-12"><textarea class="contact_input contact_textarea" placeholder="Message" required="required"></textarea></div>
+                                        {% load widget_tweaks %}
+                                        {% csrf_token %}
+                                        <div class="col-md-6">{% render_field form.username class="contact_input" placeholder="Votre nom" %}</div>
+										<div class="col-md-6">{% render_field form.email class="contact_input" placeholder="Votre e-mail"%}</div>
+										<div class="col-12">{% render_field form.subject class="contact_input" placeholder="Sujet" %}</div>
+										<div class="col-12">{% render_field form.message class="contact_input contact_textarea" placeholder="Message" %}</div>
 									</div>
-									<button class="contact_button">Envoyer</button>
-								</form>
+                                    <input class="contact_button" type="submit" value="Envoyer">
+                                </form>
 							</div>
 						</div>
 					</div>
