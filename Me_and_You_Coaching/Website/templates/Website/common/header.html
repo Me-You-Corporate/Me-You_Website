@@ -1,0 +1,41 @@
+{% load staticfiles %}
+{% block header %}
+    <!-- Header -->
+    <header class="header">
+		<div class="header_wrap d-flex flex-row align-items-center justify-content-center">
+
+			<!-- Logo -->
+			<div class="logo">
+                <a href="
+                {% if request.path != "/web/" and request.path != "/web/#" %}
+                    {{ "/web" }}
+                {% else %}
+                    {{ "#" }}
+                {% endif %}"><img width="auto" height="70px" src="{%  static 'media/logo_my.png' %}" alt="">
+                </a>
+            </div>
+
+            {% include "Website/common/nav_link.html" %}
+		</div>
+	</header>
+
+	<!-- Fixed Header -->
+
+	<header class="fixed_header">
+		<div class="header_wrap d-flex flex-row align-items-center justify-content-center">
+
+			<!-- Logo -->
+			<div class="logo">
+                <a href="
+                {% if request.path != "/web/" and request.path != "/web/#" %}
+                    {{ "/web" }}
+                {% else %}
+                    {{ "#" }}
+                {% endif %}"><img width="auto" height="70px" src="{%  static 'media/logo_my.png' %}" alt="">
+                </a>
+            </div>
+
+			{% include "Website/common/nav_link.html" %}
+		</div>
+	</header>
+{% endblock %}

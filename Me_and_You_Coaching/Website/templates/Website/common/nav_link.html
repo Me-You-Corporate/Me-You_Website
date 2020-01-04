@@ -1,0 +1,61 @@
+{% extends "Website/common/nav.html" %}
+
+{% block index %}
+    <li class="
+        {% if request.path == "/web/" %}
+            {{ "active"}}
+        {% endif %}">
+        <a href="
+            {% if request.path != "/web/" %}
+                {{ "/web" }}
+            {% else %}
+                {{ "#" }}
+            {% endif %}">Accueil
+        </a>
+    </li>
+{% endblock %}
+
+{% block contact %}
+    <li class="
+        {% if request.path == "/web/contact" %}
+            {{ "active"}}
+        {% endif %}">
+        <a href="
+            {% if request.path != "/web/contact" %}
+                {{ "/web/contact" }}
+            {% else %}
+                {{ "#" }}
+            {% endif %}">Contact
+        </a>
+    </li>
+{% endblock %}
+
+{% block login %}
+    <li class="
+        {% if request.path == "/web/login" %}
+            {{ "active"}}
+        {% endif %}">
+        <a href="
+            {% if request.path != "/web/login" %}
+                {{ "/web/login" }}
+            {% else %}
+                {{ "#" }}
+            {% endif %}">Connexion
+        </a>
+    </li>
+{% endblock %}
+
+{% block signup %}
+    <li class="
+        {% if request.path == "/web/signup" %}
+            {{ "active"}}
+        {% endif %}">
+        <a href="
+            {% if request.path != "/web/signup" %}
+                {{ "/web/signup" }}
+            {% else %}
+                {{ "#" }}
+            {% endif %}">Inscription
+        </a>
+    </li>
+{% endblock %}
