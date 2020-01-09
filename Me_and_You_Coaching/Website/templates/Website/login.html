@@ -18,24 +18,19 @@
 			<div class="row">
 
 				<!-- Contact Content -->
-				<div class="col-xl-12">
-					<div class="contact_content ">
-						<div>
-							<div class="contact_logo "><img src="{% static 'media/logo_my.png' %}" alt=""></div>
-							<div class="contact_form_container">
-								<form method="POST" class="contact_form">
+				<div class="col-12">
+				    <div class="contact_form_container">
+				        <form method="POST" class="contact_form_ls">
 									<div class="row contact_form_row">
                                         {% load widget_tweaks %}
                                         {% csrf_token %}
-                                        <div class="col-6">{% render_field form.email class="contact_input" placeholder="Votre adresse e-mail"%}</div>
-										<div class="col-12">{% render_field form.password class="contact_input" placeholder="Mot de passe" %}</div>
+                                        <div class="col-10">{% render_field form.email class="contact_input" placeholder="Votre adresse e-mail"%}</div>
+										<div class="col-10">{% render_field form.password class="contact_input" placeholder="Mot de passe" %}</div>
                                     </div>
                                     <input class="contact_button" type="submit" value="Se connecter">
-                                </form>
-							</div>
-						</div>
-					</div>
-				</div>
+                        </form>
+				    </div>
+                </div>
 		</div>
 	</div>
   </div>
