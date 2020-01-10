@@ -3,6 +3,7 @@ from django.template import loader
 from django.core.files.storage import FileSystemStorage
 from django.http import HttpResponse
 from django.contrib import messages
+from django.core.mail import send_mail, BadHeaderError
 from .Forms.login import LoginForm
 from .Forms.signup import SignupForm
 from .Forms.contact import ContactForm
@@ -23,21 +24,29 @@ def contact(request):
         form = ContactForm(request.POST)
         if form.is_valid():
             username = form.cleaned_data['username']
-            email = form.cleaned_data['password']
+            email = form.cleaned_data['email']
             subject = form.cleaned_data['subject']
             message = form.cleaned_data['message']
+            try:
+                send_mail(subject, message, email, ['nicolas.wadel.pro@gmail.com'])
+                print("email sent")
+            except BadHeaderError:
+                return redirect("contact")
     context = {'form': form}
-
-    return HttpResponse(template.render(context, request))
+    return render(request, "Website/contact.html", context)
 
 
 def login(request):
     if request.method == "POST":
         form = LoginForm(request.POST)
         if form.is_valid():
-            email = form.cleaned_data['email']
-            password = form.cleaned_data['password']
-            token = linkerAPI.login(email, password)
+            print("toto")
+            # email = form.clean
+            # password = form.cleaned_data['password']
+            # token = linkerAPI.login(email, password)
+            # print(email)
+            # print(password)
+            # print(token)
     else:
         form = LoginForm()
 
@@ -49,7 +58,7 @@ def signup(request):
         form = SignupForm(request.POST)
         if form.is_valid():
             form_inputs = {
-                'first_name': form.clean_email(),
+                'first_name': form.cleaned_data.get('first_name'),
                 'last_name': form.cleaned_data['last_name'],
                 'email': form.cleaned_data['email'],
                 'password': form.cleaned_data['email'],

@@ -28,30 +28,27 @@ class SignupForm(forms.Form):
 
         if email_ == email_confirm_:
             return email_confirm_
-        raise forms.ValidationError('Your confirmation doesn\'t match your email.')
+        raise forms.ValidationError('Les e-mails que vous avez saisi ne correspondent pas.')
 
     def clean_password_confirm(self, *args, **kwargs):
-        password_confirm_ = self.cleaned_data.get('password_confirm')
-        password_ = self.clean_password()
-
-        if password_ == password_confirm_:
-            return password_confirm_
-        raise forms.ValidationError('Your confirmation doesn\'t match your password.')
-
-    def clean_password(self, *args, **kwargs):
         password_ = self.cleaned_data.get('password')
+        password_confirm_ = self.cleaned_data.get('password_confirm')
+
         print('|')
         print(password_)
         print('|')
+        print(password_confirm_)
         if all(rule(password_) for rule in SignupForm.password_rules):
             return password_
         errors = []
         if not any(x.isupper() for x in password_):
-            errors.append('Your password needs at least 1 capital.')
+            errors.append('Votre mot de passe requiert au moins une majuscule.')
         if not any(x.islower() for x in password_):
-            errors.append('Your password needs at least 1 lowecarse.')
+            errors.append('Votre mot de passe requiert au moins une minuscule.')
         if not any(x.isdigit() for x in password_):
-            errors.append('Your password needs at least 1 number.')
+            errors.append('Votre mot de passe requiert au moins un chiffre.')
         if len(password_) < 8:
-            errors.append('Your password needs to be at least 8 characters.')
+            errors.append('Votre mot de passe requiert au moins huit characteres.')
+        if password_confirm_ != password_:
+            errors.append('Les mots de passe que vous avez saisis ne correspondent pas.')
         raise forms.ValidationError(errors)

@@ -1,0 +1,45 @@
+This document only containt the structural aspect of the Database that can be visualized here :
+    - https://dbdiagram.io/d
+
+|| Datahase ||
+
+Table Users as U {
+  user_id varchar [pk]
+  user_first_name varchar
+  user_last_name varchar
+
+  email varchar
+  password varchar
+
+  user_address varchar
+  user_city varchar
+  user_zipcode varchar
+  user_country varchar
+
+  payment_first_name varchar
+  payment_last_name varchar
+  payment_address varchar
+  payment_city varchar
+  payment_zipcode varchar
+  payment_country varchar
+
+  registration_date timestamp
+  unregister_date timestamp
+  is_active boolean
+
+  email_subscribed boolean
+  email_validated boolean
+
+  id_card_path varchar
+  pro_card_path varchar
+}
+
+Table Facturation {
+  id int [pk]
+  amount int
+  creation_date timestamp
+  payment_date timestamp
+  user_id varchar [ref: > U.user_id]
+}
+
+|| Database end ||
