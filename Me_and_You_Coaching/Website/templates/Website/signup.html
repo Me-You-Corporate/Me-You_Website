@@ -48,9 +48,27 @@
                                         <div class="col-md-6">{% render_field form.first_name class="contact_input" placeholder="Votre prénom" %}</div>
                                         <div class="col-md-6">{% render_field form.last_name class="contact_input" placeholder="Votre nom" %}</div>
                                         <div class="col-md-6">{% render_field form.email class="contact_input" placeholder="Votre adresse e-mail"%}</div>
-										<div class="col-md-6">{% render_field form.email_confirm class="contact_input" placeholder="Confirmez votre e-mail"%}</div>
-										<div class="col-12">{% render_field form.password class="contact_input" placeholder="Mot de passe" %}</div>
-										<div class="col-12">{% render_field form.password_confirm class="contact_input" placeholder="Confirmer mot de passe" %}</div>
+                                        <div class="col-md-6">{% render_field form.email_confirm class="contact_input" placeholder="Confirmez votre e-mail"%}</div>
+                                        <div class="col-xl-12">
+									        <div class="contact_info_list">
+										        <ul>
+											        {% for error in form.email_confirm.errors %}
+                                                        <li class="help is-invalid">{{ error }}</li>
+                                                    {% endfor %}
+										        </ul>
+        									</div>
+		        						</div>
+										<div class="col-6">{% render_field form.password class="contact_input" placeholder="Mot de passe" %}</div>
+                                        <div class="col-6">{% render_field form.password_confirm class="contact_input" placeholder="Confirmer mot de passe" %}</div>
+                                        <div class="col-xl-12">
+									        <div class="contact_info_list">
+										        <ul>
+											        {% for error in form.password_confirm.errors %}
+                                                        <li class="help is-invalid">{{ error }}</li>
+                                                    {% endfor %}
+										        </ul>
+        									</div>
+		        						</div>
                                         <div class="col-md-6">{% render_field form.identification_document class="contact_input" placeholder="Piece didentification : passeport, ... (.png, etc.)" %}</div>
                                         <div class="col-md-6">{% render_field form.professional_document class="contact_input" placeholder="carte professionnelle (.png, etc.)" %}</div>
                                     </div>

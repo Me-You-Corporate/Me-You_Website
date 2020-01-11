@@ -8,6 +8,8 @@ from .Forms.login import LoginForm
 from .Forms.signup import SignupForm
 from .Forms.contact import ContactForm
 from Website import linkerAPI
+from django.conf import settings
+from smtplib import SMTPException
 # Create your views here.
 
 
@@ -28,9 +30,9 @@ def contact(request):
             subject = form.cleaned_data['subject']
             message = form.cleaned_data['message']
             try:
-                send_mail(subject, message, email, ['nicolas.wadel.pro@gmail.com'])
-                print("email sent")
-            except BadHeaderError:
+                send_mail(subject, message, email, [settings.EMAIL_HOST_USER,], fail_silently=False)
+            except SMTPException as e:
+                print('There was an error sending an email: ', e)
                 return redirect("contact")
     context = {'form': form}
     return render(request, "Website/contact.html", context)
@@ -40,12 +42,11 @@ def login(request):
     if request.method == "POST":
         form = LoginForm(request.POST)
         if form.is_valid():
-            print("toto")
-            # email = form.clean
-            # password = form.cleaned_data['password']
+            email = form.cleaned_data['email']
+            password = form.cleaned_data['password']
             # token = linkerAPI.login(email, password)
-            # print(email)
-            # print(password)
+            print(email)
+            print(password)
             # print(token)
     else:
         form = LoginForm()
@@ -85,10 +86,17 @@ def signup(request):
             # signup on API make registration on temp_table, ID must be verified manually on the administrator panel
             # during test phases, then when everything seems ok, switch to automatic saves (through e-mail confirmation)
             response = linkerAPI.signup(form_inputs)
-            print(response)
-            if response == "ok": # change and use real code error
-                messages.success(request,"Votre compte a bien été créé !")
+            if response['response'] == "ok":  # change and use real code error
+                subject = "Confirmation de votre adresse e-mail"
+                message = "Afin de terminer votre inscription merci de cliquer sur le bouton suivant"
+                try:
+                    send_mail(subject, message, settings.EMAIL_HOST_USER, [form_inputs['email'], ], fail_silently=False)
+                except SMTPException as e:
+                    print('There was an error sending an email: ', e)
+                    return redirect("login")
+                # messages.success(request,"Votre compte a bien été créé !")
                 return redirect("login")
+
             # there on signup response == "OK" use mailing service to send a confirmation e-mail to the new user
             # ATM: just send an e-mail for the visual wait for design
     else:

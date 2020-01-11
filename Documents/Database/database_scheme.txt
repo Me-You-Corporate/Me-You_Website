@@ -40,6 +40,13 @@ Table Facturation {
   creation_date timestamp
   payment_date timestamp
   user_id varchar [ref: > U.user_id]
+  facturation_type int [ref: > FT.id]
+}
+
+Table Facturation_type as FT {
+    id int [pk]
+    type varchar
+
 }
 
 || Database end ||
