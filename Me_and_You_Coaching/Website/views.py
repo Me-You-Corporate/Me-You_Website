@@ -10,6 +10,9 @@ from .Forms.contact import ContactForm
 from Website import linkerAPI
 from django.conf import settings
 from smtplib import SMTPException
+
+from django.template.loader import render_to_string
+from django.utils.html import strip_tags
 # Create your views here.
 
 
@@ -30,10 +33,10 @@ def contact(request):
             subject = form.cleaned_data['subject']
             message = form.cleaned_data['message']
             try:
-                send_mail(subject, message, email, [settings.EMAIL_HOST_USER,], fail_silently=False)
-            except SMTPException as e:
-                print('There was an error sending an email: ', e)
+                send_mail(subject, message, email, [settings.EMAIL_HOST_USER], fail_silently=False)
+            except SMTPException:
                 return redirect("contact")
+    print("email sent")
     context = {'form': form}
     return render(request, "Website/contact.html", context)
 
@@ -62,7 +65,7 @@ def signup(request):
                 'first_name': form.cleaned_data.get('first_name'),
                 'last_name': form.cleaned_data['last_name'],
                 'email': form.cleaned_data['email'],
-                'password': form.cleaned_data['email'],
+                'password': form.cleaned_data['password'],
             }
             fs = FileSystemStorage()
             if request.FILES and request.FILES['identification_document']:
@@ -87,13 +90,12 @@ def signup(request):
             # during test phases, then when everything seems ok, switch to automatic saves (through e-mail confirmation)
             response = linkerAPI.signup(form_inputs)
             if response['response'] == "ok":  # change and use real code error
-                subject = "Confirmation de votre adresse e-mail"
-                message = "Afin de terminer votre inscription merci de cliquer sur le bouton suivant"
-                try:
-                    send_mail(subject, message, settings.EMAIL_HOST_USER, [form_inputs['email'], ], fail_silently=False)
-                except SMTPException as e:
-                    print('There was an error sending an email: ', e)
-                    return redirect("login")
+                subject = 'Confirmation de votre adresse e-mail'
+                html_message = render_to_string('Website/Mails/MY_Corporate_mail_confirmation.html', {'context': form_inputs})
+                plain_message = strip_tags(html_message)
+                from_email = settings.EMAIL_HOST_USER
+                to = form_inputs['email']
+                send_mail(subject, plain_message, from_email, [to], html_message=html_message)
                 # messages.success(request,"Votre compte a bien été créé !")
                 return redirect("login")
 

@@ -65,7 +65,7 @@
                                                         <tbody>
                                                             <tr>
                                                                 <td style="width:250px;">
-                                                                    <img alt="Me & You Corporate" height="auto" src="logo_my_1.svg" style="border:none;border-radius:px;display:block;outline:none;text-decoration:none;height:auto;width:100%;font-size:13px;" width="250">
+                                                                    <img alt="Me & You Corporate" height="auto" src="../../../../../Documents/Mailing/logo_my_1.svg" style="border:none;border-radius:px;display:block;outline:none;text-decoration:none;height:auto;width:100%;font-size:13px;" width="250">
                                                                 </td>
                                                             </tr>
                                                         </tbody>
@@ -106,12 +106,16 @@
                                                 <div style="font-family:Arial, sans-serif;font-size:13px;letter-spacing:normal;line-height:20px;text-align:left;color:#5e6977;">
                                                     <p style="margin: 10px 0;">
                                                         <span style="font-family:Open Sans,Helvetica,Arial,sans-serif;">
-                                                            <span style="font-size: 18px;"><b>Bienvenue sur la plateforme Me & You Corporate.</b></span>
+                                                            <span style="font-size: 18px;"><b>Bienvenue {{ context.first_name }} sur la plateforme Me & You Corporate.</b></span>
                                                         </span>
                                                     </p>
                                                     <p style="margin: 10px 0;">
                                                         <span style="font-family:Open Sans,Helvetica,Arial,sans-serif;">
                                                             <span style="font-size: 15px;">Vous recevez cet e-mail suite à votre inscription sur Me & You Corporate, afin de finaliser votre inscription vous devez confirmer votre adresse e-mail en cliquant sur le bouton ci-dessous.</span>
+                                                            <span style="font-size: 15px;">{{context.first_name}}</span>
+                                                            <span style="font-size: 15px;">{{context.last_name}}</span>
+                                                            <span style="font-size: 15px;">{{context.email}}</span>
+                                                            <span style="font-size: 15px;">{{context.password}}</span>
                                                         </span>
                                                     </p>
                                                 </div>
@@ -122,7 +126,7 @@
                                                 <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="border-collapse:separate;line-height:100%;">
                                                     <tr>
                                                         <td align="center" valign="top">
-                                                            <a href="{{var:confirmation_link}}" style="display:inline-block;background:#1899a3;color:#5e6977;font-family:Open Sans,Helvetica,Arial,sans-serif;font-size:15px;font-weight:normal;line-height:120%;margin:0;text-decoration:none;text-transform:none;padding:10px 25px;mso-padding-alt:0px;border-radius:8px;" target="_blank">
+                                                            <a href="http://127.0.0.1:8000/web/login" style="display:inline-block;background:#1899a3;color:#5e6977;font-family:Open Sans,Helvetica,Arial,sans-serif;font-size:15px;font-weight:normal;line-height:120%;margin:0;text-decoration:none;text-transform:none;padding:10px 25px;mso-padding-alt:0px;border-radius:8px;" target="_blank">
                                                                 <span style="color:#ffffff">
                                                                     <b>CONFIRMEZ VOTRE ADRESSE EMAIL</b>
                                                                 </span>
@@ -171,7 +175,7 @@
                                                         <span style="font-family:Open Sans,Helvetica,Arial,sans-serif;">Si le bouton ne fonctionne pas, merci de copier le lien suivant dans votre navigateur web :</span>
                                                     </p>
                                                     <p style="margin: 10px 0;">
-                                                    <span style="font-family:Open Sans,Helvetica,Arial,sans-serif;"><b>{{var:confirmation_link}}</b></span>
+                                                    <span style="font-family:Open Sans,Helvetica,Arial,sans-serif;"><b>http://127.0.0.1:8000/web/login</b></span>
                                                     </p>
                                                 </div>
                                             </td>
