@@ -6,14 +6,21 @@ from django.contrib import messages
 from .Forms.login import LoginForm
 from .Forms.signup import SignupForm
 from .Forms.contact import ContactForm
+from .Forms.modal import ModalForm
 from Website import linkerAPI
 # Create your views here.
 
 
 def index(request):
     template = loader.get_template('Website/index.html')
-
-    return HttpResponse(template.render({}, request))
+    form = ModalForm()
+    if request.method == "POST":
+        form = ModalForm(request.POST)
+        if form.is_valid():
+            email = form.cleaned_data['email']
+    context = {'form': form}        
+    
+    return HttpResponse(template.render(context, request))
 
 
 def contact(request):
