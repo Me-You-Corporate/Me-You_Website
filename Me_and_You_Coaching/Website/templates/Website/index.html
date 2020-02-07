@@ -79,8 +79,8 @@
       <div class="modal-body">
           <form method="POST" class="modal_form">
               <div class="row contact_form_row">
-                    {% load widget_tweaks %}
-                    {% csrf_token %}
+				  {% load widget_tweaks %}
+				  {% csrf_token %}
                   {% render_field form.email class="contact_input" placeholder="Votre e-mail"%}
               </div>
               <div class="modal-footer">

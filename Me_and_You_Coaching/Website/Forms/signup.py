@@ -1,9 +1,16 @@
 from django import forms
+# from ..models import User
 
 MIN_SIZE = 8
 
+#on save user : email is in email table with user ID accordingly generated
+#first last, password, time created & path to documents in user table
+#send email confirm & save documents to given path; if exist
+class SignupForm(forms.ModelForm):
+    # class Meta:
+        # model = User
+        # fields = ['first_name', 'last_name', 'email', 'password']
 
-class SignupForm(forms.Form):
     first_name = forms.CharField()
     last_name = forms.CharField()
     email = forms.EmailField()
@@ -34,10 +41,6 @@ class SignupForm(forms.Form):
         password_ = self.cleaned_data.get('password')
         password_confirm_ = self.cleaned_data.get('password_confirm')
 
-        print('|')
-        print(password_)
-        print('|')
-        print(password_confirm_)
         if all(rule(password_) for rule in SignupForm.password_rules):
             return password_
         errors = []

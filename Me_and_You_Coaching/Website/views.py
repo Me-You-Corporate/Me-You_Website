@@ -8,7 +8,7 @@ from .Forms.login import LoginForm
 from .Forms.signup import SignupForm
 from .Forms.contact import ContactForm
 from .Forms.modal import ModalForm
-from Website import linkerAPI
+from . import linkerAPI
 from django.conf import settings
 from smtplib import SMTPException
 
@@ -18,19 +18,18 @@ from django.utils.html import strip_tags
 
 
 def index(request):
-    template = loader.get_template('Website/index.html')
     form = ModalForm()
     if request.method == "POST":
         form = ModalForm(request.POST)
         if form.is_valid():
+            print("form valid")
             email = form.cleaned_data['email']
     context = {'form': form}        
     
-    return HttpResponse(template.render(context, request))
+    return render(request, "Website/index.html", context)
 
 
 def contact(request):
-    template = loader.get_template('Website/contact.html')
     form = ContactForm()
     if request.method == "POST":
         form = ContactForm(request.POST)
@@ -85,9 +84,9 @@ def signup(request):
                 # figure out a path to save relative document to each user : hint : user_id
             # cannot seem to query info from the photo, so use normal input to get them
             coachInfos = {
-                "Nom": form_inputs.get('first_name'),
-                "Prenom": form_inputs.get('last_name'),
-                "NumCartePro": 123456
+                "Nom": "Maximilien",#form_inputs.get('first_name'),
+                "Prenom": "de Robespierre",#form_inputs.get('last_name'),
+                "NumCartePro": "123456"
             }
             # verification using html response from official website : not best solution but only one found
             response = linkerAPI.verifynumcardpro(coachInfos)
@@ -102,7 +101,7 @@ def signup(request):
                 plain_message = strip_tags(html_message)
                 from_email = settings.EMAIL_HOST_USER
                 to = form_inputs['email']
-                send_mail(subject, plain_message, from_email, [to], html_message=html_message)
+                # send_mail(subject, plain_message, from_email, [to], html_message=html_message)
                 # messages.success(request,"Votre compte a bien été créé !")
                 return redirect("login")
 

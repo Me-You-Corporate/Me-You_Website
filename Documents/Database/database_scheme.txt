@@ -4,31 +4,15 @@ This document only containt the structural aspect of the Database that can be vi
 || Datahase ||
 
 Table Users as U {
-  user_id varchar [pk]
-  user_first_name varchar
-  user_last_name varchar
+  id varchar [pk]
+  first_name varchar
+  last_name varchar
 
-  email varchar
   password varchar
-
-  user_address varchar
-  user_city varchar
-  user_zipcode varchar
-  user_country varchar
-
-  payment_first_name varchar
-  payment_last_name varchar
-  payment_address varchar
-  payment_city varchar
-  payment_zipcode varchar
-  payment_country varchar
 
   registration_date timestamp
   unregister_date timestamp
   is_active boolean
-
-  email_subscribed boolean
-  email_validated boolean
 
   id_card_path varchar
   pro_card_path varchar
@@ -39,7 +23,7 @@ Table Facturation {
   amount int
   creation_date timestamp
   payment_date timestamp
-  user_id varchar [ref: > U.user_id]
+  user_id varchar [ref: > U.id]
   facturation_type int [ref: > FT.id]
 }
 
@@ -48,5 +32,40 @@ Table Facturation_type as FT {
     type varchar
 
 }
+
+Table Adress_type as AT {
+  id int [pk]
+  type varchar
+}
+
+Table Adress {
+  id int [pk]
+  user_id varchar [ref: > U.id]
+  first_name varchar
+  last_name varchar
+  address varchar
+  city varchar
+  zipcode varchar
+  country varchar
+  adress_type_id int [ref: > AT.id]
+}
+
+Table Email {
+  user_id varchar [ref: > U.id]
+  validated boolean
+  subscribed boolean
+  address varchar [pk]
+}
+
+Table Role as R {
+  id bigint [pk]
+  role varchar
+}
+
+Table User_role {
+  user_id varchar [ref: > U.id]
+  role_id bigin [ref: > R.id]
+}
+
 
 || Database end ||
