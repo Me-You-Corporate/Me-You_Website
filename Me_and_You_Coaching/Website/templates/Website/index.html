@@ -48,13 +48,13 @@
                         <div class="row">
                             <div class="col">
                                 <div class="home_content active">
-                                    <div class="home_subtitle">optimiser ses revenus en exerçant à domicile !</div>
+                                    <div class="home_subtitle">Offre de Bienvenue</div>
                                         <div class="home_title">
-                                            <h1><span>2 mois</span> Offerts</h1>
+                                            <h1><span>149.99€/mois*</span></h1>
                                         </div>
-                                        <div class="home_subtitle">pour les 50 premiers inscrits</div>
-                                        <div class="button home_button"><a href="contact">S'inscrire ici</a></div>
-                                </div>
+                                        <div class="home_subtitle">*Pour les 2 premiers mois, places limitées !</div>
+                                        <div class="button home_button"><a href="#newsletter_mail" data-toggle="modal" data-target="#newsletter_mail">S'inscrire ici</a></div>
+                                    </div>
                             </div>
                         </div>
                     </div>
@@ -65,6 +65,37 @@
         
 	</div>
     	<!-- CTA -->
+        <!-- MODAL -->
+
+<div class="modal fade" id="newsletter_mail" tabindex="-1" role="dialog" aria-labelledby="newsletter_mail_Label" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="newsletter_mail_Label">Inscrivez-vous ici</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+          <form method="POST" class="modal_form">
+              <div class="row contact_form_row">
+                    {% load widget_tweaks %}
+                    {% csrf_token %}
+                  {% render_field form.email class="contact_input" placeholder="Votre e-mail"%}
+              </div>
+              <div class="modal-footer">
+                  <input type="submit" class="contact_button" value="S'inscrire !">
+              </div>
+          </form>      
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- MODAL -->
+
+
 
 	<div class="cta">
 		<div class="d-flex flex-xl-row flex-column align-items-start justify-content-start">
@@ -78,11 +109,11 @@
 					<ul>
 						<li class="d-flex flex-row align-items-center justify-content-start">
 							<img src="{%  static 'media/check.png' %}" alt="">
-							<span>Me & You vous permet de ne plus vous limitez aux salles de sport.</span>
+							<span>Me & You vous permet de ne plus vous limiter aux salles de sport.</span>
 						</li>
 						<li class="d-flex flex-row align-items-center justify-content-start">
 							<img src="{%  static 'media/check.png' %}" alt="">
-							<span>Exercez votre métier de coach à domicile.</span>
+							<span>Exercez votre métier de coach à directement à domicile.</span>
 						</li>
 						<li class="d-flex flex-row align-items-center justify-content-start">
 							<img src="{%  static 'media/check.png' %}" alt="">
@@ -96,8 +127,8 @@
 				</div>
 				<div class="cta_buttons">
 					<div class="d-flex flex-row align-items-start justify-content-start flex-wrap">
-						<div class="button cta_button"><a href="contact">En savoir plus</a></div>
-						<div class="button_2 cta_button"><a href="contact">10% offerts</a></div>
+						<div class="button cta_button"><a href="contact">Contactez-nous !</a></div>
+						<!-- <div class="button_2 cta_button"><a href="contact">10% offerts</a></div> -->
 					</div>
 				</div>
 			</div>
