@@ -8,7 +8,7 @@ from .Forms.login import LoginForm
 from .Forms.signup import SignupForm
 from .Forms.contact import ContactForm
 from .Forms.modal import ModalForm
-from . import linkerAPI
+from .linker_api import linkerAPI
 from django.conf import settings
 from smtplib import SMTPException
 

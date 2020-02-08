@@ -1,7 +1,7 @@
 import json
 import requests
 from bs4 import BeautifulSoup
-# from .Forms.signup import SignupForm
+from .models import User
 
 class linkerAPI():
     @staticmethod
@@ -21,9 +21,8 @@ class linkerAPI():
         last_name = form_infos["last_name"]
         email = form_infos["email"]
         password = form_infos["password"]
-        # SignupForm.model.save(instance=SignupForm(data=form_infos))
-        print(first_name, ' ', last_name, ' ', password, ' ', email)
-        # object = User(first_name=form_infos["first_name"], last_name=form_infos["last_name"])
+        user = User(id="toto", first_name=first_name, last_name=last_name, password=password)
+        user.save()
         return {"response": "ok"}
 
     @staticmethod

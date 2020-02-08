@@ -1,5 +1,5 @@
 from django import forms
-# from ..models import User
+from ..models import User
 
 MIN_SIZE = 8
 
@@ -7,9 +7,9 @@ MIN_SIZE = 8
 #first last, password, time created & path to documents in user table
 #send email confirm & save documents to given path; if exist
 class SignupForm(forms.ModelForm):
-    # class Meta:
-        # model = User
-        # fields = ['first_name', 'last_name', 'email', 'password']
+    class Meta:
+        model = User
+        fields = ['first_name', 'last_name', 'email', 'password']
 
     first_name = forms.CharField()
     last_name = forms.CharField()

@@ -12,11 +12,11 @@ class User(models.Model):
     password = models.CharField(max_length=255)
     # Crontab action & keep track of user
     registration_date = models.DateTimeField(auto_now_add=True)
-    unregister_date = models.DateTimeField()
+    unregister_date = models.DateTimeField(null=True)
     is_active = models.BooleanField(default=False)
     # Documents
-    id_card_path = models.CharField(max_length=255)
-    pro_card_path = models.CharField(max_length=255)
+    id_card_path = models.CharField(max_length=255, null=True)
+    pro_card_path = models.CharField(max_length=255, null=True)
 
 
 class Email(models.Model):
@@ -40,25 +40,19 @@ class Address(models.Model):
 
 
 # "Facturation" "Domicile"
-class Address_type(models.Model):
+class AddressType(models.Model):
     id = models.BigIntegerField(unique=True, primary_key=True)
-    type = models.CharField(max_length=255)
+    type = models.CharField(max_length=255, unique=True)
 
 
-class Client:
-    user_id = models.CharField(max_length=255, unique=True, primary_key=True)
-    test = models.BooleanField()
+class Role(models.Model):
+    id = models.BigIntegerField(unique=True, primary_key=True)
+    role = models.CharField(max_length=255, unique=True)
 
 
-class Coach:
-    user_id = models.CharField(max_length=255, unique=True, primary_key=True)
-    test = models.BooleanField()
-
-
-class Admin:
-    user_id = models.CharField(max_length=255, unique=True, primary_key=True)
-    test = models.BooleanField()
-
+class UserRole(models.Model):
+    user_id = models.CharField(max_length=255)
+    role_id = models.CharField(max_length=255)
 
 # Facturation
 # payment_first_name = models.CharField(max_length=255)
