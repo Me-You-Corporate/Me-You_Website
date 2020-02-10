@@ -16,6 +16,7 @@ from django.template.loader import render_to_string
 from django.utils.html import strip_tags
 # Create your views here.
 
+from .models import User
 
 def index(request):
     form = ModalForm()
@@ -53,10 +54,8 @@ def login(request):
         if form.is_valid():
             email = form.cleaned_data['email']
             password = form.cleaned_data['password']
-            # token = linkerAPI.login(email, password)
-            print(email)
-            print(password)
-            # print(token)
+            response = linkerAPI.login(email, password)
+            print(response["message"])
     else:
         form = LoginForm()
 
@@ -72,6 +71,7 @@ def signup(request):
                 'last_name': form.cleaned_data['last_name'],
                 'email': form.cleaned_data['email'],
                 'password': form.cleaned_data['password'],
+                'zipcode': form.cleaned_data['zipcode']
             }
             fs = FileSystemStorage()
             if request.FILES and request.FILES['identification_document']:

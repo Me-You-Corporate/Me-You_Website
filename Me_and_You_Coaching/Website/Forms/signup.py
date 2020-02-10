@@ -22,6 +22,11 @@ class SignupForm(forms.ModelForm):
     # maybe get first name, last name & number // check against ID
     professional_document = forms.FileField(required=False)
 
+    #in order to generate user ID
+    zipcode = forms.CharField()
+    #once userID is generated & login works + other stuff
+    #inser laposte_hexasmal.csv in DB then feth table to find if zipcode exists
+
     password_rules = [
         lambda s: any(x.isupper() for x in s),  # must have at least one uppercase
         lambda s: any(x.islower() for x in s),  # must have at least one lowercase
