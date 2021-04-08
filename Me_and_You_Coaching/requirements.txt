@@ -3,7 +3,7 @@ beautifulsoup4==4.7.1
 certifi==2019.6.16
 chardet==3.0.4
 Click==7.0
-Django==2.2.7
+Django==2.2.20
 django-widget-tweaks==1.4.5
 Flask==1.0.2
 Flask-JWT==0.3.2
